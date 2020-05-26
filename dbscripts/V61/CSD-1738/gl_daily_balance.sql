@@ -1,0 +1,5 @@
+ALTER TABLE `tbl_gl_daily_balance` ADD `fld_peroid_id` INT NOT NULL AFTER `fld_bal_cr`;
+
+
+ALTER TABLE `tbl_gl_daily_balance` ADD `fld_account_id` INT NOT NULL AFTER `fld_peroid_id`;
+ALTER TABLE `tbl_gl_daily_balance` ADD `fld_cash_dr_sum` DOUBLE NOT NULL AFTER `fld_statues`, ADD `fld_cash_cr_sum` DOUBLE NOT NULL AFTER `fld_cash_dr_sum`, ADD `fld_bank_dr_sum` DOUBLE NOT NULL AFTER `fld_cash_cr_sum`, ADD `fld_bank_cr_sum` DOUBLE NOT NULL AFTER `fld_bank_dr_sum`, ADD `fld_jounal_dr_sum` DOUBLE NOT NULL AFTER `fld_bank_cr_sum`, ADD `fld_journal_cr_sum` DOUBLE NOT NULL AFTER `fld_jounal_dr_sum`, ADD `fld_total_dr_sum` DOUBLE NOT NULL AFTER `fld_journal_cr_sum`, ADD `fld_total_cr_sum` DOUBLE NOT NULL AFTER `fld_total_dr_sum`, ADD `fld_bal_dr` DOUBLE NOT NULL AFTER `fld_total_cr_sum`, ADD `fld_bal_cr` DOUBLE NOT NULL AFTER `fld_bal_dr`;

@@ -1,0 +1,23 @@
+change folder to where Rajeeda SVN is checked out
+
+i.e.;
+/home/crp/rajeeda
+
+(execute logmerge.sh shell script)
+
+./logmerge.sh (enter)
+CSD-
+(enter ticket number - only the number without CSD)
+
+qa/crp or int/crp to merge:(q/i)?
+(enter 'q' for merge changes from trunk/crp to qa/crp)
+(enter 'i' for merge changes from qa/crp to int/crp)
+
+(messages will appear indicating changes done and SVN revision numbers ...)
+(finnaly this message will appear if no error occured)
+
+Merging completed, Please resolve conflicts if exist ...
+--- ---
+
+(your changes been added to qa/crp or int/crp based on your selection)
+(insepect the SVN output for any conflits or commit errors)

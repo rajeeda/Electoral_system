@@ -1,0 +1,12 @@
+- Folder structure
+-- trunk     - active development
+-- qa        - active qa testing
+-- int       - integration/production sources
+-- tags      - release tags
+-- dbscripts - db changes in roolup and roolback scripts
+
+Check out only the required folder
+Always commit with a JIRA ticket number
+** Do not commit localized configs and temporary files
+
+this is a test
