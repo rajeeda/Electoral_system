@@ -61,22 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 
 				<div class="page-content">
-                    <div class="row-fluid">
-                        <div class="alert alert-block <?=$message1['status'];?>">
-                            <button type="button" class="close" data-dismiss="alert">
-                                <i class="icon-remove"></i>
-                            </button>
-
-                            <i class="icon-ok"></i>
-                            <strong>
-                                <?=$message1['msg'];?>
-                                
-                            </strong> 
-                        </div>
-                        <div id="admin_dashboard" class="error-container not_proccessed">
-                            
-                        </div>
-                    </div>
+                
 				</div><!--/.page-content--> 
 			</div><!--/.main-content-->
 		</div><!--/.main-container-->

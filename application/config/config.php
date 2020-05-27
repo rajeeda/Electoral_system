@@ -17,8 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/cprt';
-$config['site_url'] = 'http://localhost/cprt';
+$config['base_url'] = 'http://localhost/Electoral_system';
+$config['site_url'] = 'http://localhost/Electoral_system';
 
 /*
 |--------------------------------------------------------------------------

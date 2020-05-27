@@ -592,7 +592,7 @@ CREATE TABLE `tbl_lanugage_page_common` (
 
 INSERT INTO `tbl_lanugage_page_common` (`fld_page_text_id`, `fld_language_id`, `fld_text_no`, `fld_text`) VALUES
 (1, 1, 1, 'Loans'),
-(2, 1, 2, 'Malwala TCCS LTD'),
+(2, 1, 2, 'Electoral System'),
 (3, 1, 3, 'Admin Panel'),
 (4, 1, 4, 'Home'),
 (7, 2, 1, 'ණය'),
@@ -928,7 +928,7 @@ CREATE TABLE `tbl_process_master` (
 --
 
 INSERT INTO `tbl_process_master` (`fld_company_id`, `fld_company_name`, `fld_logo`, `color`) VALUES
-(1, 'Malwala Sanasa', 'uploads/loans_documents/sanasa-logo.jpg', NULL);
+(1, 'Electoral System', 'uploads/loans_documents/sanasa-logo.jpg', NULL);
 
 -- --------------------------------------------------------
 
