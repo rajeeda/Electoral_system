@@ -142,7 +142,7 @@ h6{
                                             <?php echo form_close(); ?>
                         <div class="other-links">
                            <div class="center">
-                                            <label class="muted">Version 1.70 © 2019<br>
+                                            <label class="muted">Version 1.0 © 2020<br>
                                              Rajeeda Holdings (pvt) Ltd </label>
                                         </div>
                                         <div class="center">

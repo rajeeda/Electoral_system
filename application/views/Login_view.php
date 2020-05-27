@@ -176,7 +176,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="widget-main">
                                         
                                         <div class="center">
-                                            <label class="muted">CRP System - Version 1.69 © 2019, Rajeeda Holdings (pvt) Ltd </label>
+                                            <label class="muted"> Version 1.0 © 2019, Rajeeda Holdings (pvt) Ltd </label>
                                         </div>
                                         <div class="center">
                                             <label class="blue"> 
