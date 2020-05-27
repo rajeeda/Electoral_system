@@ -84,7 +84,7 @@ h6{
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <h3>CRP SYSTEM</h3>
+                        <h3>Electoral System</h3>
                         <!-- <h6>Total online accounting solution for microfinance.</h6> -->
                         <!-- <h3>Wijepala Hettiarachchi Social Network</h3> -->
                         <!-- <br> -->
@@ -131,8 +131,7 @@ h6{
                                                     <div class="form-button">
                                                         <div class="clearfix">
                                 <button id="submit" type="submit" class="ibtn">Admin Login</button>
-                                <a href="<?=base_url();?>index.php/User_login?>" 
-                                    class="ibtn">User Login</a>
+                                
                                 <br>
                                 <a class="pop" data-rel="popover" data-placement="bottom" title="Forgot password" data-content="please contact head comitee"><font size="0.5px" color="#ffffff" style="normal">Forgot password?</a></font>
                             </div>

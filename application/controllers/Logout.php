@@ -15,7 +15,7 @@ class Logout extends CI_Controller {
         $user_id=$this->session->userdata('fld_user_id');
         $this->Logout_model->deactive_user($user_id,$data);
         $this->session->sess_destroy();
-        redirect('User_Login');
+        redirect('Login');
 	}
 
     

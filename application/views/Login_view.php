@@ -90,14 +90,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="span6 pull-left hidden-phone">
                             
                                 
-                                <h2 class="smaller lighter blue"><?=$comp_name?> - CRP System</h2>
+                                <h2 class="smaller lighter blue"><?=$comp_name?> - Electoral System</h2>
                                 <div>
                                     <div class="row-fluid">
                                         <blockquote>
                                             <p>Total online accounting solution for microfinance.</p>
 
                                             <small>
-                                                <cite title="Source Title">CRP SYSTEM</cite>
+                                                <cite title="Source Title">Electoral System</cite>
                                             </small>
                                         </blockquote>
                                     </div>

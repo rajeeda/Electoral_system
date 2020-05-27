@@ -56,10 +56,6 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`customer_id`, `customer_type`, `electoral_division_id`, `gs_division_id`, `ds_division_id`, `fld_customer_name`, `title`, `full_name`, `nic`, `user_name`, `password`, `date_of_birth`, `address`, `telephone`, `email`, `gender`, `passport`, `driving_license`, `occupation`, `blood_group`, `target_votes`, `customer_active`) VALUES
-(1, '1', NULL, 1, 0, 'test', '', 'test test', '898623386V', 'customer1', '02e0ace6d645059f26d3ddae4c5623ad', '1989-12-27', 'athu', '', '', 0, '', '', '', '', 0, 1),
-(5, '1', 1, 1, 3, 'Iresha', '', 'Iresha Dolawaththa', '908623386V', NULL, NULL, '1990-12-27', 'athurugiriya', '0711977446', 'iresha@gmail.com', 0, '111111', '2222222', 'sw', 'O+', 0, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -76,11 +72,6 @@ CREATE TABLE `customer_target` (
 -- Dumping data for table `customer_target`
 --
 
-INSERT INTO `customer_target` (`id`, `booth_id`, `customer_id`) VALUES
-(1, 1, 1),
-(2, 2, 1),
-(3, 1, 5),
-(4, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -97,11 +88,6 @@ CREATE TABLE `district` (
 -- Dumping data for table `district`
 --
 
-INSERT INTO `district` (`district_id`, `district_name`) VALUES
-(1, 'Colombo'),
-(2, 'Gampaha'),
-(3, 'Kaluthara'),
-(4, 'puttalama');
 
 -- --------------------------------------------------------
 
@@ -119,11 +105,6 @@ CREATE TABLE `ds_division` (
 -- Dumping data for table `ds_division`
 --
 
-INSERT INTO `ds_division` (`ds_division_id`, `electoral_division_id`, `ds_division_name`) VALUES
-(1, 1, 'Dehiwala'),
-(2, 1, 'Homagama'),
-(3, 1, 'Kaduwela'),
-(4, 1, 'Kotte');
 
 -- --------------------------------------------------------
 
@@ -141,9 +122,6 @@ CREATE TABLE `electoral_division` (
 -- Dumping data for table `electoral_division`
 --
 
-INSERT INTO `electoral_division` (`electoral_division_id`, `district_id`, `name`) VALUES
-(1, 1, 'Colombo'),
-(2, 1, 'Gampaha');
 
 -- --------------------------------------------------------
 
@@ -163,9 +141,6 @@ CREATE TABLE `gs_division` (
 -- Dumping data for table `gs_division`
 --
 
-INSERT INTO `gs_division` (`gs_division_id`, `ds_division_id`, `gn_division_name`, `modify_at`, `modify_by`) VALUES
-(1, 3, 'Athurugiriya', '2020-05-12', 1),
-(2, 3, 'Malabe', '2020-05-12', 1);
 
 -- --------------------------------------------------------
 
@@ -188,9 +163,6 @@ CREATE TABLE `house_data` (
 -- Dumping data for table `house_data`
 --
 
-INSERT INTO `house_data` (`house_id`, `customer_id`, `polling_booth_id`, `house_number`, `total_votes`, `potential_votes`, `confirm_votes`, `status`) VALUES
-(1, 1, 1, '95/B', 5, 5, 4, 1),
-(3, 1, 1, '617/B', 5, 5, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -210,9 +182,6 @@ CREATE TABLE `polling_booth` (
 -- Dumping data for table `polling_booth`
 --
 
-INSERT INTO `polling_booth` (`polling_booth_id`, `gs_division_id`, `polling_booth_name`, `modify_at`, `modify_by`) VALUES
-(1, 1, 'bomiriya pahala', NULL, NULL),
-(2, 1, 'bomiriya ihala', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -238,45 +207,6 @@ INSERT INTO `tbl_customer_type` (`id`, `fld_cus_type`, `active_status`) VALUES
 
 --
 -- Table structure for table `tbl_ds_division`
---
-
-CREATE TABLE `tbl_ds_division` (
-  `fld_id` int(11) NOT NULL,
-  `fld_division` varchar(100) DEFAULT NULL,
-  `fld_status` int(11) DEFAULT 0,
-  `fld_branch` varchar(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
-
---
--- Dumping data for table `tbl_ds_division`
---
-
-INSERT INTO `tbl_ds_division` (`fld_id`, `fld_division`, `fld_status`, `fld_branch`) VALUES
-(1, 'Rathnapura', 1, '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_gn_division`
---
-
-CREATE TABLE `tbl_gn_division` (
-  `fld_id` int(11) NOT NULL,
-  `fld_division` varchar(100) DEFAULT NULL,
-  `fld_ds_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
-
---
--- Dumping data for table `tbl_gn_division`
---
-
-INSERT INTO `tbl_gn_division` (`fld_id`, `fld_division`, `fld_ds_id`) VALUES
-(1, 'Malwala', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_language_master`
 --
 
 CREATE TABLE `tbl_language_master` (
