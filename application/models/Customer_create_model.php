@@ -97,6 +97,12 @@ class Customer_create_model extends CI_Model{
         $insert_id = $this->db->insert_id();
         return $insert_id;
     }
+
+    function save_customer_target($data){
+        $this->db->insert('customer_target',$data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
     function get_customer_form(){
         $this->db->select('fld_feild_name,fld_feild_show_name,fld_requied');
         $this->db->from('tbl_forms_master');
@@ -132,6 +138,36 @@ class Customer_create_model extends CI_Model{
         $this->db->select('*');
         $this->db->from('electoral_division');
         // $this->db->where("fld_branch",$branch);
+        $query = $this->db->get();
+        if($query){
+            return $query->result();
+        } 
+    } 
+
+    function get_district(){
+        $this->db->select('*');
+        $this->db->from('district');
+        // $this->db->where("fld_branch",$branch);
+        $query = $this->db->get();
+        if($query){
+            return $query->result();
+        } 
+    }
+
+    function get_electoral_division($ds_id){
+        $this->db->select('*');
+        $this->db->from('electoral_division');
+        $this->db->where("district_id",$ds_id);
+        $query = $this->db->get();
+        if($query){
+            return $query->result();
+        } 
+    } 
+
+    function get_polling_booth($gn_id){
+        $this->db->select('*');
+        $this->db->from('polling_booth');
+        $this->db->where("gs_division_id",$gn_id);
         $query = $this->db->get();
         if($query){
             return $query->result();

@@ -49,6 +49,7 @@ class Customer_create_ctrl extends CI_Controller {
         // $this->data['gn_division']    =$this->Customer_create_model->get_gn_division($branch);
         $this->data['ds_division']    =$this->Customer_create_model->get_ds_division();
         $this->data['elect_division']=$this->Customer_create_model->get_el_division();
+        $this->data['district']=$this->Customer_create_model->get_district();
         $this->data['type']    =$this->Customer_create_model->get_cus_type();
 
         $this->load->view('Template/Header_view',$this->data);
@@ -98,6 +99,8 @@ class Customer_create_ctrl extends CI_Controller {
         $ds_division            =$this->input->post('ds_division');
         $gn_division            =$this->input->post('gn_division');
         $electoral_division     =$this->input->post('electoral_division');
+        $district               =$this->input->post('district');
+        $polling_booth          =$this->input->post('polling_booth');
         date_default_timezone_set('Asia/Colombo');
         $date                =date('Y-m-d H:i:s');
 			
@@ -132,12 +135,25 @@ class Customer_create_ctrl extends CI_Controller {
                 // "fld_customer_created"    =>$date,
                 "ds_division_id"         =>$ds_division,
                 "gs_division_id"         =>$gn_division,
-                "electoral_division_id"  =>$electoral_division_id,
+                "electoral_division_id"  =>$electoral_division,
+                // "district"               =>$district,
             );
 
             
             $customer_no=$this->Customer_create_model->add_new_customer($data);
             if($customer_no){
+
+                if($polling_booth){
+                    foreach ($polling_booth as $booth){
+
+                     $both_data = array(
+                        'booth_id' => $booth,
+                        'customer_id' => $customer_no,
+                    );
+
+                 $this->Customer_create_model->save_customer_target($both_data);
+                    }
+                }
 			
 			   $messg=$customer_no. "customer created successfully.";
 			   $rtrnarr= array(
@@ -178,6 +194,24 @@ class Customer_create_ctrl extends CI_Controller {
     function get_gn_division()
     {   $ds_id=$this->input->post('ds_id');
         $result=$this->Customer_create_model->get_gn_division($ds_id);
+        if($result){
+            echo json_encode($result);
+        }
+        
+    }
+
+    function get_electoral_division()
+    {   $ds_id=$this->input->post('ds_id');
+        $result=$this->Customer_create_model->get_electoral_division($ds_id);
+        if($result){
+            echo json_encode($result);
+        }
+        
+    } 
+
+    function get_polling_booth()
+    {   $gn_id=$this->input->post('gn_id');
+        $result=$this->Customer_create_model->get_polling_booth($gn_id);
         if($result){
             echo json_encode($result);
         }

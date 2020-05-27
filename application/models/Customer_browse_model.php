@@ -141,14 +141,15 @@ class Customer_browse_model extends CI_Model{
         customer.customer_active as status,
         ds_division.ds_division_name,
         gs_division.gn_division_name,
-        electoral_division.name as el_name
+        electoral_division.name as el_name,
+        district_name
 
         ");
         $this->db->from("customer");
         $this->db->join("gs_division","gs_division.gs_division_id=customer.gs_division_id","left");
         $this->db->join("ds_division","ds_division.ds_division_id=gs_division.ds_division_id", "left");
-         $this->db->join("electoral_division","electoral_division.district_id=customer.electoral_division_id", "left");
-         // $this->db->join("district","district.district_id=ds_division.electoral_division_id", "left");
+         $this->db->join("electoral_division","electoral_division.electoral_division_id=ds_division.electoral_division_id", "left");
+          $this->db->join("district","district.district_id=ds_division.electoral_division_id", "left");
         // $this->db->join("(SELECT fld_customer_no,fld_customer_name as fo_name FROM customer WHERE fld_customer_type='Field Officer') AS FO ","customer.fld_customer_FO=FO.fld_customer_no","left"
     
 
@@ -247,7 +248,48 @@ class Customer_browse_model extends CI_Model{
 	}
 
     //***************
+
+     function get_customer_info($customer){
+        $this->db->select("customer.customer_id,
+        customer.customer_type,
+        customer.fld_customer_name,
+        customer.full_name,
+        customer.nic,
+        customer.user_name,
+        customer.date_of_birth,
+        customer.address,
+        customer.telephone,
+        customer.email,
+        customer.gender,
+        customer.passport,
+        customer.driving_license,
+        customer.customer_active as status,
+        ds_division.ds_division_name,
+        gs_division.gn_division_name,
+        electoral_division.name as el_name,
+        district_name
+
+        ");
+        $this->db->from("customer");
+        $this->db->join("gs_division","gs_division.gs_division_id=customer.gs_division_id","left");
+        $this->db->join("ds_division","ds_division.ds_division_id=gs_division.ds_division_id", "left");
+         $this->db->join("electoral_division","electoral_division.electoral_division_id=ds_division.electoral_division_id", "left");
+          $this->db->join("district","district.district_id=ds_division.electoral_division_id", "left");
+       
+        $this->db->where("customer.customer_id",$customer);
+        $query = $this->db->get();
+        return $query->result();
+    }
     // get_gn_divisions
+        function get_electoral_division($ds_id){
+        $this->db->select('*');
+        $this->db->from('electoral_division');
+        $this->db->where("district_id",$ds_id);
+        $query = $this->db->get();
+        if($query){
+            return $query->result();
+        } 
+    }
         function get_gn_division($ds_id){
         $this->db->select('gs_division_id as fld_id,gn_division_name as fld_division');
         $this->db->from('gs_division');

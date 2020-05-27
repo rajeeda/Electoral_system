@@ -137,12 +137,12 @@ $today = date("Y-m-d");
                         <th> Customer Type </th>
                         <th> Customer NIC </th>
                         <th> Customer TP </th>
-                        <th> Customer Branch </th>
-                        <th> Customer FO </th>
-                        <th> Customer Group </th>
+                        <th> Customer Email </th>
+                        <th> Date of Birth </th>
+                       <!--  <th> Date of Birth </th>
                         <th> Customer Center </th>
-                        <th> Status </th>
-                        <th> Location </th>
+                        <th> Status </th> -->
+                        <th> Ds Division </th>
                         <th> More </th>
                     </tr>
                     </thead>
@@ -158,12 +158,12 @@ $today = date("Y-m-d");
                         <th> Customer Type </th>
                         <th> Customer NIC </th>
                         <th> Customer TP </th>
-                        <th> Customer Branch </th>
-                        <th> Customer FO </th>
-                        <th> Customer Group </th>
+                        <th> Customer Email </th>
+                        <th> Date of Birth </th>
+                   <!--      <th> Date of Birth </th>
                         <th> Customer Center </th>
-                        <th> Status </th>
-                        <th> Location </th>
+                        <th> Status </th> -->
+                        <th> Ds Division </th>
                         <th> More </th>
                     </tr>
                     </tfoot>
@@ -240,24 +240,13 @@ $today = date("Y-m-d");
                 '</label>' +
                 '</li>' +
 
-                '<li class="item-blue clearfix">' +
-                '<label class="inline">' +
-                '<span class="lbl"><strong>Customer Gender</strong> : <strong class="blue">' + d.customer_gender + '</strong></span>' +
-                '</label>' +
-                '</li>' +
+                
                 '<li class="item-blue clearfix">' +
                 '<label class="inline">' +
                 '<span class="lbl"><strong>Customer Address</strong> : <strong class="blue">' + d.customer_address + '</strong></span>' +
                 '</label>' +
                 '</li>' +
-                '<li class="item-blue clearfix">' +
-                '<label class="inline">' +
-                '<span class="lbl"><strong>Customer Location</strong> :&nbsp<button type="button" class="btn btn-mini btn-info"  id="customer_location">' +
-                '<i class="icon-map-marker bigger-110"></i><a href="<?=base_url()?>index.php/Customer_ctrl/customer_location/' + d.customer_no + '" target="_blank"> Location </a></button>&nbsp' +
-                '<button type="button" class="btn btn-mini btn-info"  id="customer_location">' +
-                '<i class="icon-map-marker bigger-110"></i><a href="https://www.google.lk/maps/dir//' + d.customer_latitude + ',' + d.customer_longitude + '" target="_blank"> View Map Directions</a></button></strong></span>' +
-                '</label>' +
-                '</li>' +
+               
 
                 '<li class="item-blue clearfix" >' +
                 '<label class="inline">' +
@@ -266,34 +255,25 @@ $today = date("Y-m-d");
                 '</li>' +
                 '<li class="item-blue clearfix">' +
                 '<label class="inline">' +
-                '<span class="lbl"><strong>Customer Passport NO</strong> : <strong class="blue">' + d.customer_passport + '</strong></span>' +
+                '<span class="lbl"><strong>GN Division</strong> : <strong class="blue">' + d.gn_division_name + '</strong></span>' +
                 '</label>' +
                 '</li>' +
                 '<li class="item-blue clearfix">' +
                 '<label class="inline">' +
-                '<span class="lbl"><strong>Customer Driving License</strong> : <strong class="blue">' + d.customer_driving_license + '</strong></span>' +
+                '<span class="lbl"><strong>DS Division</strong> : <strong class="blue">' + d.ds_division_name + '</strong></span>' +
                 '</label>' +
                 '</li>' +
                 '<li class="item-blue clearfix" >' +
                 '<label class="inline">' +
-                '<span class="lbl"><strong>Joined Date</strong> : <strong class="blue">' + d.customer_created + '</strong></span>' +
+                '<span class="lbl"><strong>Electrol Division</strong> : <strong class="blue">' + d.el_name + '</strong></span>' +
                 '</label>' +
                 '</li>' +
                 '<li class="item-blue clearfix" >' +
                 '<label class="inline">' +
-                '<span class="lbl"><strong>Blood Group</strong> : <strong class="blue">' + d.customer_blood + '</strong></span>' +
+                '<span class="lbl"><strong>district</strong> : <strong class="blue">' + d.district_name + '</strong></span>' +
                 '</label>' +
                 '</li>' +
-                '<li class="item-blue clearfix" >' +
-                '<label class="inline">' +
-                '<span class="lbl"><strong>Status</strong> : <strong class="blue">' + d.customer_status + '</strong></span>' +
-                '</label>' +
-                '</li>' +
-                '<li class="item-blue clearfix" >' +
-                '<label class="inline">' +
-                '<span class="lbl"><strong>Occupation</strong> : <strong class="blue">' + d.customer_occupation + '</strong></span>' +
-                '</label>' +
-                '</li>' +
+                
                 '</ul>';
         }
 
@@ -335,7 +315,7 @@ $today = date("Y-m-d");
                 },
                 {
                     "orderable": false,
-                    "data": null
+                    "data": "customer_no"
                 },
                 {
                     "orderable": false,
@@ -356,28 +336,28 @@ $today = date("Y-m-d");
                
                 {
                     "orderable": false,
-                    "data": null
+                    "data": "customer_email"
                 },
                 {
                     "orderable": false,
-                    "data": null
+                    "data": "customer_dob"
                 },
-                {
-                    "orderable": false,
-                    "data": null
-                },
-                {
-                    "orderable": false,
-                    "data": null
-                },
-                {
-                    "orderable": false,
-                    "data": null,
+                // {
+                //     "orderable": false,
+                //     "data": "customer_passport"
+                // },
+                // {
+                //     "orderable": false,
+                //     "data": "customer_driving_license"
+                // },
+                // {
+                //     "orderable": false,
+                //     "data": "customer_status",
 
-                },
+                // },
                    {
                     "orderable": false,
-                    "data": null,
+                    "data": "ds_division_name",
 
                 },
                    {
@@ -391,12 +371,12 @@ $today = date("Y-m-d");
                 
                 var name = data['customer_name'];
                 var customer_no = data['customer_no'];
-                $('td', row).eq(0).html('<button type="button" class="btn btn-info btn-mini details-control-btn" ><i class="icon-plus"></i></button><a href="<?=base_url()?>index.php/Customer_ctrl/edit_customer/' + customer_no + '/2" target="_blank" class="btn btn-warning btn-mini view_schedule" role="button" class="green" data-toggle="modal"><i class="icon-eye-open"></i></a>');
-                $('td', row).eq(13).html('<a href="<?=base_url()?>index.php/Customer_ctrl/edit_customer/' + customer_no + '/1" target="_blank" class="btn btn-warning btn-mini view_schedule" role="button" class="green" data-toggle="modal"><i class="icon-edit"></i></a>');
+                $('td', row).eq(0).html('<button type="button" class="btn btn-info btn-mini details-control-btn" ><i class="icon-plus"></i></button><a href="<?=base_url()?>index.php/Customer_browse_ctrl/edit_customer/' + customer_no + '/2" target="_blank" class="btn btn-warning btn-mini view_schedule" role="button" class="green" data-toggle="modal"><i class="icon-eye-open"></i></a>');
+                $('td', row).eq(10).html('<a href="<?=base_url()?>index.php/Customer_browse_ctrl/edit_customer/' + customer_no + '/1" target="_blank" class="btn btn-warning btn-mini view_schedule" role="button" class="green" data-toggle="modal"><i class="icon-edit"></i></a>');
                
-                $('td', row).eq(10).html('<span class="red">-</span>');
-                $('td', row).eq(9).html('<span class="red">-</span>');
-                //$('td', row).eq(9).html('<span class="label label-danger"><a href="<?=base_url()?>index.php/Customer_ctrl/customer_location/'+customer_no+'" target="_blank"> Location </a></span>');
+                // $('td', row).eq(7).html('<span class="red">-</span>');
+                // $('td', row).eq(6).html('<span class="red">-</span>');
+                //$('td', row).eq(9).html('<span class="label label-danger"><a href="<?=base_url()?>index.php/Customer_browse_ctrl/customer_location/'+customer_no+'" target="_blank"> Location </a></span>');
                
 
              // if (active == '1') {

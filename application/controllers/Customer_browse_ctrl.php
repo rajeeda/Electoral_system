@@ -77,18 +77,22 @@ class Customer_browse_ctrl extends CI_Controller {
             $row = array(
                 "no"=>$no,
                 "customer_no"=>$customers->customer_id,
-                "customer_name"=>$customers->customer_type,
-                "customer_type"=>$customers->fld_customer_name,
+                "customer_name"=>$customers->fld_customer_name,
+                "customer_type"=>$customers->customer_type,
                 "customer_full_name"=>$customers->full_name,
                 "customer_address"=>$customers->address,
                 "customer_nic"=>$customers->nic,
                 "customer_tp"=>$customers->telephone,
                 "customer_email"=>$customers->email,
                 "customer_dob"=>$customers->date_of_birth,
-                "customer_passport"=>$customers->passport,
-                "customer_driving_license"=>$customers->driving_license,
-                "customer_status"=>$customers->status,
+                "customer_gender"=>$customers->gender,
+                // "customer_passport"=>$customers->passport,
+                // "customer_driving_license"=>$customers->driving_license,
+                // "customer_status"=>$customers->status,
                 "ds_division_name"=>$customers->ds_division_name,
+                "gn_division_name"=>$customers->gn_division_name,
+                "el_name"=>$customers->el_name,
+                "district_name"=>$customers->district_name,
                    
                 
             );
@@ -106,6 +110,53 @@ class Customer_browse_ctrl extends CI_Controller {
         //output to json format
         echo json_encode($output);
         
+    }
+
+     function edit_customer($customer,$pageid){
+      
+        $branch = $this->input->post("branch");
+        $page_id=$pageid;
+        $customer_no=$customer;
+        $customer_branch_id="";
+        $customer_fo_id="";
+        $customer_group_id="";
+        $customer_center_id="";
+        $type=2;
+        // $this->load->model('Customer_model');
+
+        $customer_info=$this->Customer_browse_model->get_customer_info($customer_no);
+       
+        
+        // foreach($customer_info as $row){
+        //     $customer_branch_id=$row->fld_customer_branch;
+        //     $customer_fo_id=$row->fld_customer_FO;
+        //     $customer_group_id=$row->fld_group;
+        //     $customer_center_id=$row->fld_center; 
+        // }
+        
+        
+        
+        // $branches=$this->Customer_model->get_branches($customer_branch_id);
+        // $fos=$this->Customer_model->get_fos($customer_fo_id);
+        // $groups=$this->Customer_model->get_groups($customer_group_id);
+        // $centers=$this->Customer_model->get_centers($customer_center_id);
+        // $relations=$this->Customer_model->get_relations($customer_no);
+        
+        // $others=$this->Customer_model->get_others($customer_no);
+        // $documents=$this->Customer_model->get_documents($customer_no);
+        
+        // $cal_types=$this->Customer_model->get_cal_types($customer_no);
+        
+        $this->data['page_id']= $page_id;
+        $this->data['cus_no']= $customer_no;
+        $this->data['cus_info']= $customer_info;
+        
+        
+        // $this->data['lan']       =$this->Customer_model->get_lang();
+        
+            $this->load->view('Template/Header_view',$this->data);
+            $this->load->view('Template/Nav_view',$this->data);
+            $this->load->view('Customer_edit_view',$this->data);    
     }
     
     function get_old_cus_no_for_branch(){

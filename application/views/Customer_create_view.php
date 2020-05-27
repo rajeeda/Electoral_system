@@ -226,7 +226,22 @@ max-height: 90px !important;
                                                     </div>
                                                 </div>
                                               
-                                                
+                                      
+                                <div class="control-group" id="district_div">
+                                    <label class="control-label" for="group">
+                                    District<span class="red"></span>:
+                                    </label>
+                                    <div class="controls">
+                                        <select  class="chzn-select" id="district" name="district" data-placeholder="">
+                                            <option value=""/>                                                            
+                                            <?php foreach($district as $ds){ ?>
+                                            <option value="<?=$ds->district_id; ?>"/><?=$ds->district_name; ?>
+                                                            <?php } ?>
+                                        </select>
+                                                        
+                                    </div>
+                                    </div>
+
                                     <div class="control-group" id="el_div">
                                     <label class="control-label" for="group">
                                     Electoral Division<span class="red"></span>:
@@ -240,7 +255,9 @@ max-height: 90px !important;
                                         </select>
                                                         <?php echo form_error('branch'); ?>
                                     </div>
-                                    </div>      
+                                    </div>   
+
+                                      
                                              
                                              
                                         <div class="control-group" id="ds_div">
@@ -267,7 +284,20 @@ max-height: 90px !important;
                                                         </select>
                                                         <?php echo form_error('branch'); ?>
                                                     </div>
-                                                </div>                                                
+                                                </div>
+
+                                                   <div class="control-group" id="booth_div">
+                                    <label class="control-label" for="group">
+                                    Polling Booth<span class="red"></span>:
+                                    </label>
+                                    <div class="controls">
+                                        <select  class="chzn-select" id="polling_booth" name="polling_booth"  multiple data-placeholder="">
+                                            <option value=""/>                                                            
+                                           
+                                        </select>
+                                                       
+                                    </div>
+                                    </div>                                                 
                                                                                        
                                                 <div class="control-group">
                                                     <label class="control-label" for="active">
@@ -489,7 +519,7 @@ max-height: 90px !important;
 
 				/////end validation ////
                 function create_new_customer(){
-                    alert("in");
+                   
                     var name                   = $('#name').val(); 
                     var honorific              = $('#honorific').val();  
                     var full_name              = $('#full_name').val();  
@@ -504,9 +534,11 @@ max-height: 90px !important;
                     var dob                    = $('#dob').val();  
                     var passport               = $('#passport').val(); 
                     var occupation             = $('#occupation').val();  
-                    var gn_division            = $('#gn_division').val();
+                    var district               = $('#district').val();
                     var electoral_division     = $('#electoral_division').val();
                     var ds_division            = $('#ds_division').val();
+                    var gn_division            = $('#gn_division').val();
+                    var polling_booth          = $('#polling_booth').val();
                     var type                   = $('#type').val();
 
 					//add data through ajax//
@@ -530,8 +562,10 @@ max-height: 90px !important;
                             'dob':dob,
                             'passport':passport,
                             'occupation':occupation,
+                            'district':district,
                             'electoral_division':electoral_division,
                             'gn_division':gn_division,
+                            'polling_booth':polling_booth,
                             'ds_division':ds_division},
                             beforeSend: function() {
                                 $(".se-pre-con").fadeIn("slow");
@@ -546,16 +580,17 @@ max-height: 90px !important;
 								console.log(response.cus_no)
 								
 								if(response.status==true){
-								  $('#customer_create_msg').append("<div class='alert alert-block alert-success'><button type='button' class='close' data-dismiss='alert'><i class='icon-remove'></i></button><i class='icon-ok'></i><strong>"+response.message+"</strong><div class='space'></div><div><i class='icon-link'></i><a href='<?=base_url()?>index.php/Customer_ctrl/edit_customer/"+response.cus_no+"/1'><span class='info'>Add more details for this customer please click here..</span></a></div></div>");
+								    swal("Saved!", "successfully saved data!", "success");
+                                    location.reload();
 								}
 								else{
-								  $('#customer_create_msg').append("<div class='alert alert-block alert-error'><button type='button' class='close' data-dismiss='alert'><i class='icon-remove'></i></button><i class='icon-alert'></i><strong>"+response.message+"</strong></div>");
+								    swal("Error!", "Error1!", "error") 
 								}
-								clear_form();
+								
                             },
                             error: function(e){
-                                console.log(e);
-								clear_form();
+                                swal("Error!", "Error2!", "error");
+
                             }
                     }); 
 					//ending add data through ajax //
@@ -590,6 +625,16 @@ max-height: 90px !important;
                 $("#ds_division").on("change",function(){
                     var ds_id=$(this).val();
                     get_gnList(ds_id);
+                });
+
+                $("#district").on("change",function(){
+                    var ds_id=$(this).val();
+                    get_elect_divisions(ds_id);
+                });
+
+                $("#gn_division").on("change",function(){
+                    var ds_id=$(this).val();
+                    get_polling_booth(ds_id);
                 });
                 
                 
@@ -715,14 +760,15 @@ function get_gnList(ds_id){
                     });
 }
 
-function get_foList(branch){
-                $('#fo option').remove().trigger("liszt:updated");
-                $('#fo').append('<option val=""> </option>').trigger("liszt:updated");
+function get_elect_divisions(ds_id){
+
+                    $('#electoral_division option').remove().trigger("liszt:updated");
+                    $('#electoral_division').append('<option val=""> </option>').trigger("liszt:updated");
                     $.ajax({
                             type: 'POST',
-                            url:'<?=base_url();?>index.php/Customer_create_ctrl/get_branch_fo',
+                            url:'<?=base_url();?>index.php/Customer_create_ctrl/get_electoral_division',
                             dataType: 'json',
-                            data:{'branch':branch},
+                            data:{'ds_id':ds_id},
                             beforeSend: function() {
                                 $(".se-pre-con").fadeIn("slow");
                             },
@@ -730,19 +776,49 @@ function get_foList(branch){
                                 $(".se-pre-con").fadeOut("slow");
                             },
                             success: function(response){
-                                console.log(response)
-                                $(response).each(function(index, customer) { 
-                                    $('#fo').append("<option value='"+customer.fld_customer_no+"'>"+customer.fld_customer_no+"-"+customer.fld_customer_name+" </option>");
+                                
+                                $(response).each(function(index, gn) { 
+                                    $('#electoral_division').append("<option value='"+gn.electoral_division_id+"'>"+gn.name+" </option>");
                                 });
-                                $('#fo').trigger("liszt:updated");
+                                $('#electoral_division').trigger("liszt:updated");
                             },
                             error: function(e){
                                console.log(e);
                             }
                             
-                });   
-
+                    });
 }
+
+function get_polling_booth(gn_id){
+
+                    $('#polling_booth option').remove().trigger("liszt:updated");
+                    $('#polling_booth').append('<option val=""> </option>').trigger("liszt:updated");
+                    $.ajax({
+                            type: 'POST',
+                            url:'<?=base_url();?>index.php/Customer_create_ctrl/get_polling_booth',
+                            dataType: 'json',
+                            data:{'gn_id':gn_id},
+                            beforeSend: function() {
+                                $(".se-pre-con").fadeIn("slow");
+                            },
+                            complete: function() {
+                                $(".se-pre-con").fadeOut("slow");
+                            },
+                            success: function(response){
+                                
+                                $(response).each(function(index, gn) { 
+                                    $('#polling_booth').append("<option value='"+gn.polling_booth_id+"'>"+gn.polling_booth_name+" </option>");
+                                });
+                                $('#polling_booth').trigger("liszt:updated");
+                            },
+                            error: function(e){
+                               console.log(e);
+                            }
+                            
+                    });
+}
+
+
 		</script>
 	</body>
 </html>
