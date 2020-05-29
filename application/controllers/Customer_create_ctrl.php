@@ -103,6 +103,8 @@ class Customer_create_ctrl extends CI_Controller {
         $polling_booth          =$this->input->post('polling_booth');
         date_default_timezone_set('Asia/Colombo');
         $date                =date('Y-m-d H:i:s');
+        $username=$customer_nic;
+        $password=md5(sha1($customer_nic));
 			
 		//////////////////////////////////////
         $branch_active ="";
@@ -136,6 +138,8 @@ class Customer_create_ctrl extends CI_Controller {
                 "ds_division_id"         =>$ds_division,
                 "gs_division_id"         =>$gn_division,
                 "electoral_division_id"  =>$electoral_division,
+                "user_name"  =>$username,
+                "password"  =>$password,
                 // "district"               =>$district,
             );
 
